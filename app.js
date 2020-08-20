@@ -116,12 +116,17 @@ app.post("/delete", function(req,res)
 		 }
 	});
 
+app.get("/about", function(req,res)
+	{
+		res.render("about");
+	});
+
 app.get("/:listName" , function(req,res)
 	{
 		const listName = _.capitalize(req.params.listName);
 		if(listName === "about")
 		 {
-		 	res.render("about");
+		 	res.redirect("/about");
 	     }
 	    else
 	     {
