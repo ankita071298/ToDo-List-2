@@ -116,6 +116,11 @@ app.post("/delete", function(req,res)
 		 }
 	});
 
+app.get("/about",function(req,res)
+	{
+		res.render("about");
+	});
+
 app.get("/:listName" , function(req,res)
 	{
 		const listName = _.capitalize(req.params.listName);
@@ -137,11 +142,6 @@ app.get("/:listName" , function(req,res)
 			 		res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
 			 }
 		 });
-	});
-
-app.get("/about",function(req,res)
-	{
-		res.render("about");
 	});
 
 let port = process.env.PORT;
