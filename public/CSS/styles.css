@@ -84,6 +84,11 @@ input[type="text"]:focus
     color: grey;
     opacity: 1;
  }
+.abt
+ {
+    text-decoration: none;
+    color:rgba(0, 0, 0, 0.5);
+ }
 footer
  {
     color: white;

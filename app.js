@@ -116,17 +116,17 @@ app.post("/delete", function(req,res)
 		 }
 	});
 
-app.get("/about", function(req,res)
+/*app.get("/about", function(req,res)
 	{
 		res.render("about");
-	});
+	});*/
 
 app.get("/:listName" , function(req,res)
 	{
 		const listName = _.capitalize(req.params.listName);
-		if(listName === "about")
+		if(listName === "About")
 		 {
-		 	res.redirect("/about");
+		 	res.render("about");
 	     }
 	    else
 	     {
