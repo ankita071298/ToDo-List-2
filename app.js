@@ -116,32 +116,34 @@ app.post("/delete", function(req,res)
 		 }
 	});
 
-app.get("/about",function(req,res)
-	{
-		res.render("about");
-	});
-
 app.get("/:listName" , function(req,res)
 	{
 		const listName = _.capitalize(req.params.listName);
-		List.findOne({name: listName}, function(err,foundList)
+		if(listName === "about")
 		 {
-			if(!err)
+		 	res.render("about");
+	     }
+	    else
+	     {
+	     	List.findOne({name: listName}, function(err,foundList)
 			 {
-			 	if(!foundList)
-			 	 {
-			 		const list = new List(
-					 {
-						name: listName,
-						items: []
-					 });
-			 		list.save();
-			 		res.redirect("/" + listName);
-			 	 }
-			 	else
-			 		res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
-			 }
-		 });
+				if(!err)
+				 {
+				 	if(!foundList)
+				 	 {
+				 		const list = new List(
+						 {
+							name: listName,
+							items: []
+						 });
+				 		list.save();
+				 		res.redirect("/" + listName);
+				 	 }
+				 	else
+				 		res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
+				 }
+			 });
+	     }
 	});
 
 let port = process.env.PORT;
